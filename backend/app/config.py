@@ -11,4 +11,16 @@ class Settings:
     DATABASE_URL: str = "sqlite:///./chat_history.db"
     MAX_IMAGE_DIMENSION: int = 2048  # Resize images larger than this
     
+    def validate(self):
+        """Validate required settings"""
+        if not self.GEMINI_API_KEY:
+            print("\n" + "="*60)
+            print("WARNING: GEMINI_API_KEY not set!")
+            print("Please set your API key in backend/.env file:")
+            print("GEMINI_API_KEY=your_api_key_here")
+            print("\nGet your API key from:")
+            print("https://makersuite.google.com/app/apikey")
+            print("="*60 + "\n")
+    
 settings = Settings()
+settings.validate()

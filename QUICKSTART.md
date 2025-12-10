@@ -13,6 +13,33 @@
    GEMINI_API_KEY=your_actual_key_here
    ```
 
+### RECOMMENDED: Test Your API Key
+
+Before starting the app, test your API key to see which models you have access to:
+
+```bash
+cd backend
+venv\Scripts\activate
+python test_models.py
+```
+
+This will show you:
+- ✅ Which Gemini models are available
+- ❌ Any issues with your API key
+- 🎉 Which model the app will use
+
+**Example output:**
+```
+Testing gemini-2.0-flash-exp... ✅ AVAILABLE
+Testing gemini-1.5-flash... ✅ AVAILABLE
+
+✅ Available Models: 2
+   - gemini-2.0-flash-exp
+   - gemini-1.5-flash
+
+🎉 SUCCESS! The app will use: gemini-2.0-flash-exp
+```
+
 ## Running the Application
 
 ### Option 1: Using the batch scripts (Windows)

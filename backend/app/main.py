@@ -43,4 +43,30 @@ async def root():
 
 @app.get("/api/health")
 async def health_check():
-    return {"status": "ok"}
+    api_key_status = "configured" if settings.GEMINI_API_KEY else "not_configured"
+    return {
+        "status": "ok",
+        "gemini_api_key": api_key_status,
+        "database": "connected",
+        "uploads_dir": os.path.exists(settings.UPLOAD_DIR)
+    }
+
+@app.on_event("startup")
+async def startup_event():
+    """Print helpful startup information"""
+    print("\n" + "="*60)
+    print("🚀 Chimera AI Backend Started Successfully!")
+    print("="*60)
+    print(f"📍 API URL: http://localhost:8000")
+    print(f"📖 Docs: http://localhost:8000/docs")
+    print(f"🗄️  Database: {settings.DATABASE_URL}")
+    print(f"📁 Uploads: {settings.UPLOAD_DIR}")
+    
+    if settings.GEMINI_API_KEY:
+        print(f"✅ Gemini API Key: Configured ({settings.GEMINI_API_KEY[:10]}...)")
+    else:
+        print("❌ Gemini API Key: NOT CONFIGURED!")
+        print("   Please set GEMINI_API_KEY in backend/.env")
+        print("   Get your key from: https://makersuite.google.com/app/apikey")
+    
+    print("="*60 + "\n")
