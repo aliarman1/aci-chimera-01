@@ -30,14 +30,16 @@ This will show you:
 
 **Example output:**
 ```
+Testing gemini-2.5-flash... ✅ AVAILABLE
 Testing gemini-2.0-flash-exp... ✅ AVAILABLE
 Testing gemini-1.5-flash... ✅ AVAILABLE
 
-✅ Available Models: 2
+✅ Available Models: 3
+   - gemini-2.5-flash
    - gemini-2.0-flash-exp
    - gemini-1.5-flash
 
-🎉 SUCCESS! The app will use: gemini-2.0-flash-exp
+🎉 SUCCESS! The app will use: gemini-2.5-flash
 ```
 
 ## Running the Application

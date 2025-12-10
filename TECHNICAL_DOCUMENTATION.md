@@ -305,10 +305,11 @@ Image Model:
 Key Features:
 - Async API communication
 - Multimodal content preparation
-- Model selection (gemini-pro vs gemini-pro-vision)
+- Gemini 2.5 Flash model integration
 - Safety filter handling
-- Rate limiting awareness
+- Automatic rate limiting
 - Error message translation
+- Traceback logging for debugging
 ```
 
 **API Integration Pattern:**
@@ -585,9 +586,8 @@ Multimodal Content Parts:
 ]
 ```
 
-**Model Selection:**
-- `gemini-pro`: Text-only conversations
-- `gemini-pro-vision`: Multimodal (text + images)
+**Model Used:**
+- `gemini-2.5-flash`: Multimodal (text + images) - Primary model with latest capabilities
 
 **Error Handling:**
 - API key validation errors

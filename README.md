@@ -1,10 +1,10 @@
 # Chimera AI - Multimodal Chat Application
 
-A modern, full-stack multimodal chat application powered by Google's Gemini Pro Vision AI. Built with Next.js (frontend) and FastAPI (backend), featuring a sleek techy UI, image upload support, and persistent chat history.
+A modern, full-stack multimodal chat application powered by Google's Gemini 2.5 Flash AI. Built with Next.js (frontend) and FastAPI (backend), featuring a sleek techy UI, image upload support, and persistent chat history.
 
 ## Features
 
-- **Multimodal Chat**: Send text and images to Gemini Pro Vision AI
+- **Multimodal Chat**: Send text and images to Gemini 2.5 Flash AI
 - **Multiple Conversations**: Create and manage multiple chat conversations
 - **Image Upload**: Upload any number of images per message (automatically resized)
 - **Chat History**: Persistent storage of all conversations in SQLite
@@ -18,8 +18,9 @@ A modern, full-stack multimodal chat application powered by Google's Gemini Pro 
 - **FastAPI**: Modern Python web framework
 - **SQLAlchemy**: ORM for database operations
 - **SQLite**: Lightweight database for chat history
-- **Google Gemini Pro Vision**: AI model for multimodal chat
+- **Google Gemini 2.5 Flash**: AI model for multimodal chat
 - **Pillow**: Image processing and resizing
+- **Rate Limiting**: Automatic request throttling to prevent quota issues
 
 ### Frontend
 - **Next.js 14**: React framework with App Router
@@ -36,10 +37,11 @@ chimera/
 │   │   ├── routes/
 │   │   │   └── chat.py          # Chat API endpoints
 │   │   ├── services/
-│   │   │   ├── gemini.py        # Gemini API integration
+│   │   │   ├── gemini.py        # Gemini 2.5 Flash integration
 │   │   │   └── storage.py       # File storage handling
 │   │   ├── utils/
-│   │   │   └── image_utils.py   # Image processing utilities
+│   │   │   ├── image_utils.py   # Image processing utilities
+│   │   │   └── rate_limiter.py  # API rate limiting
 │   │   ├── config.py            # Configuration settings
 │   │   ├── database.py          # Database setup
 │   │   ├── models.py            # SQLAlchemy models
@@ -47,6 +49,11 @@ chimera/
 │   │   └── main.py              # FastAPI app entry point
 │   ├── uploads/                 # Uploaded images storage
 │   ├── requirements.txt         # Python dependencies
+│   ├── test_models.py           # API key testing utility
+│   ├── check_quota.py           # Quota status checker
+│   ├── test_api.bat             # Quick test script (Windows)
+│   ├── check_quota.bat          # Quick quota check (Windows)
+│   ├── start_backend.bat        # Backend startup script (Windows)
 │   └── .env                     # Environment variables
 │
 └── frontend/
@@ -64,6 +71,7 @@ chimera/
     │   └── api.ts               # API client
     ├── types/
     │   └── index.ts             # TypeScript interfaces
+    ├── start_frontend.bat       # Frontend startup script (Windows)
     └── package.json             # Node dependencies
 ```
 
@@ -106,7 +114,15 @@ chimera/
    MAX_IMAGE_DIMENSION=2048
    ```
 
-5. **Run the backend server**:
+5. **Test your API key (RECOMMENDED)**:
+   ```bash
+   python test_models.py
+   # Or on Windows:
+   .\test_api.bat
+   ```
+   This will verify your API key has access to Gemini 2.5 Flash.
+
+6. **Run the backend server**:
    ```bash
    uvicorn app.main:app --reload --port 8000
    ```
@@ -255,6 +271,14 @@ venv\Scripts\activate     # Windows
 - Check your API key in `.env`
 - Verify API quota at Google AI Studio
 - Check internet connection
+- Ensure your API key has access to Gemini 2.5 Flash
+
+**API quota exceeded**: 
+- Run `check_quota.bat` (Windows) or `python check_quota.py` to check quota status
+- Free tier limits: 15 requests/minute, 1,500 requests/day
+- Wait for quota reset (60 seconds for RPM, 24 hours for RPD)
+- Get a new API key or upgrade to paid tier
+- The app includes automatic rate limiting to prevent quota issues
 
 **Database errors**: Delete `chat_history.db` to reset the database
 
