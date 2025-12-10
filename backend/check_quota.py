@@ -32,8 +32,8 @@ def check_quota_status():
         genai.configure(api_key=api_key)
         
         # Try the primary model with a simple request
-        print("Testing API access with gemini-2.0-flash-exp...", end=" ")
-        model = genai.GenerativeModel('gemini-2.0-flash-exp')
+        print("Testing API access with gemini-2.5-flash...", end=" ")
+        model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content("Hi")
         
         if response and hasattr(response, 'text'):
@@ -86,7 +86,7 @@ def check_quota_status():
                 if response and hasattr(response, 'text'):
                     print("✅ SUCCESS with fallback model!")
                     print()
-                    print("Your API is working but gemini-2.0-flash-exp is not available.")
+                    print("Your API is working but gemini-2.5-flash is not available.")
                     print("The app will use gemini-1.5-flash instead.")
                     return True
             except Exception as e2:

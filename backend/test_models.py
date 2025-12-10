@@ -36,9 +36,10 @@ def test_gemini_models():
         
         # List of models to test (in order of preference)
         models_to_test = [
-            ('gemini-2.0-flash-exp', 'Gemini 2.0 Flash (Experimental - Latest)'),
-            ('gemini-1.5-flash', 'Gemini 1.5 Flash (Stable)'),
-            ('gemini-1.5-pro', 'Gemini 1.5 Pro (Stable)'),
+            ('gemini-2.5-flash', 'Gemini 2.5 Flash (Primary Model)'),
+            ('gemini-2.0-flash-exp', 'Gemini 2.0 Flash (Experimental - Fallback)'),
+            ('gemini-1.5-flash', 'Gemini 1.5 Flash (Stable Fallback)'),
+            ('gemini-1.5-pro', 'Gemini 1.5 Pro (Stable Fallback)'),
         ]
         
         available_models = []
