@@ -100,6 +100,35 @@ Open your browser and go to: **http://localhost:3000**
 - Double-check your Gemini API key in backend/.env
 - Make sure there are no extra spaces or quotes around the key
 
+### "API quota exceeded" error
+If you see a quota exceeded error, you have a few options:
+
+**Quick Check - See if quota has reset:**
+```bash
+cd backend
+.\check_quota.bat
+```
+
+This script will tell you:
+- ⏳ If quota is still exceeded
+- ✅ If quota has been restored
+- 📋 Your quota limits and reset times
+
+**Solutions:**
+1. **Wait for reset** - Free tier quotas reset:
+   - RPM (Requests Per Minute): Every 60 seconds
+   - RPD (Requests Per Day): After 24 hours
+   
+2. **Get a new API key** - Create another key at https://aistudio.google.com/app/apikey
+
+3. **Upgrade to paid tier** - Get higher quota limits
+
+**Rate Limiting is Now Active:**
+The app now automatically throttles requests to prevent hitting quota limits. The rate limiter:
+- Tracks API calls per minute
+- Adds delays between requests when needed
+- Prevents quota exhaustion during heavy use
+
 ## Next Steps
 
 - Check out the full README.md for detailed documentation
